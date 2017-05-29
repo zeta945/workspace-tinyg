@@ -1220,7 +1220,7 @@ cpdefine("inline:com-chilipeppr-workspace-tinyg", ["chilipeppr_ready"], function
             chilipeppr.load(
                 "com-chilipeppr-xyz",
                 // Lauer's new widget 8/16/15
-                "http://raw.githubusercontent.com/chilipeppr/widget-axes/master/auto-generated-widget.html", 
+                "https://raw.githubusercontent.com/zeta945/widget-axes/master/auto-generated-widget.html", 
                 // Temporary widget from Danal
                 //"http://fiddle.jshell.net/Danal/vktco1y6/show/light/", 
                 // Lauer's original core widget
