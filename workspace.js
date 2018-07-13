@@ -11,7 +11,7 @@ cprequire_test(["inline:com-chilipeppr-workspace-tinyg"], function(ws) {
      */
     var loadFlashMsg = function() {
         chilipeppr.load("#com-chilipeppr-widget-flash-instance",
-            "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
+            "http://raw.githubusercontent.com/chilipeppr/element-flash/master/auto-generated-widget.html",
             function() {
                 console.log("mycallback got called after loading flash msg module");
                 cprequire(["inline:com-chilipeppr-elem-flashmsg"], function(fm) {
@@ -226,6 +226,40 @@ cpdefine("inline:com-chilipeppr-workspace-tinyg", ["chilipeppr_ready"], function
             // create a workspace object reference to this so inside the anonymous functions below
             // the workspace can be referred to
             var wsObj = this;
+            
+            // Load XBox Controller Widget
+            chilipeppr.load(
+              "#com-chilipeppr-ws-xbox",
+              "http://raw.githubusercontent.com/chilipeppr/widget-xbox/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetXbox
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-xbox"], // the id you gave your widget
+                  function(myObjWidgetXbox) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / Xbox just got loaded.", myObjWidgetXbox);
+                    myObjWidgetXbox.init();
+                    
+                    // setup toggle button
+                    var zwBtn = $('#com-chilipeppr-ws-menu .xbox-button');
+                    var zwDiv = $('#com-chilipeppr-ws-xbox');
+                    zwBtn.click(function() {
+                        if (zwDiv.hasClass("hidden")) {
+                            // unhide
+                            zwDiv.removeClass("hidden");
+                            zwBtn.addClass("active");
+                        }
+                        else {
+                            zwDiv.addClass("hidden");
+                            zwBtn.removeClass("active");
+                        }
+                        $(window).trigger('resize');
+                    });
+                  }
+                );
+              }
+            );
 
             this.font2gcodeObj = function() {
                 return {
@@ -618,6 +652,7 @@ cpdefine("inline:com-chilipeppr-workspace-tinyg", ["chilipeppr_ready"], function
             
             // Laser Solder
             // com-chilipeppr-ws-jscut
+            /*
             chilipeppr.load(
                 "#com-chilipeppr-ws-lasersolder",
                 "http://fiddle.jshell.net/chilipeppr/xuu785yz/show/light/",
@@ -645,7 +680,7 @@ cpdefine("inline:com-chilipeppr-workspace-tinyg", ["chilipeppr_ready"], function
                         });
                     });
                 }); //End Laser Solder
-                
+                */
 
             // Eagle BRD Import
             // com-chilipeppr-widget-eagle
@@ -1294,6 +1329,42 @@ cpdefine("inline:com-chilipeppr-workspace-tinyg", ["chilipeppr_ready"], function
                         }, 200);
                     });
                     
+                  }
+                );
+              }
+            );
+            
+            // Frank Herrmann's Webcam Widget
+            chilipeppr.load(
+              "#com-chilipeppr-ws-webcam",
+              "http://raw.githubusercontent.com/xpix/widget-cam/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetCam
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-cam"], // the id you gave your widget
+                  function(myObjWidgetCam) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / Cam just got loaded.", myObjWidgetCam);
+                    myObjWidgetCam.init();
+                    
+                    var btn = $('#com-chilipeppr-ws-menu .webcam-button');
+                    var div = $('#com-chilipeppr-ws-webcam');
+                    div.addClass("hidden");
+                    btn.click(function() {
+                        if (div.hasClass("hidden")) {
+                            // show widget
+                            div.removeClass("hidden");
+                            btn.addClass("active");
+                        } else {
+                            // hide widget
+                            div.addClass("hidden");
+                            btn.removeClass("active");
+                        }
+                        setTimeout(function() {
+                            $(window).trigger('resize');
+                        }, 200);
+                    });
                   }
                 );
               }
